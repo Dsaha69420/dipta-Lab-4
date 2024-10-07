@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Form Validation</title>
+    <style>
+        .error {
+            color: red;
+            font-size: 12px;
+        }
+        input {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Simple Form Validation</h1>
+
+    <form id="simpleForm" novalidate>
+        <label for="name">Name (At least 3 characters long):</label><br>
+        <input type="text" id="name"><br>
+        <span class="error" id="nameError"></span><br>
+
+        <label for="email">Email (Valid format):</label><br>
+        <input type="text" id="email"><br>
+        <span class="error" id="emailError"></span><br>
+
+        <label for="phone">Phone Number (10 digits):</label><br>
+        <input type="text" id="phone"><br>
+        <span class="error" id="phoneError"></span><br>
+
+        <label for="password">Password (At least 8 characters):</label><br>
+        <input type="password" id="password"><br>
+        <span class="error" id="passwordError"></span><br>
+
+        <label for="confirmPassword">Confirm Password:</label><br>
+        <input type="password" id="confirmPassword"><br>
+        <span class="error" id="confirmPasswordError"></span><br>
+
+        <label for="age">Age (18-60):</label><br>
+        <input type="text" id="age"><br>
+        <span class="error" id="ageError"></span><br>
+
+        <label for="website">Website URL (starts with http:// or https://):</label><br>
+        <input type="text" id="website"><br>
+        <span class="error" id="websiteError"></span><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        document.getElementById("simpleForm").onsubmit = function(event) {
+            event.preventDefault();  // Prevent form submission
+            clearErrors();  // Clear previous error messages
+            let isValid = true;
+
+            // Name validation
+            const name = document.getElementById("name").value.trim();
+            if (name.length < 3 || !isNaN(name)) {
+                document.getElementById("nameError").textContent = "Name must be at least 3 characters long and not numeric.";
+                isValid = false;
+            }
+
+            // Email validation (simple check for "@" and ".")
+            const email = document.getElementById("email").value.trim();
+            if (!email.includes("@") || !email.includes(".")) {
+                document.getElementById("emailError").textContent = "Please enter a valid email.";
+                isValid = false;
+            }
+
+            // Phone validation (check for exactly 10 digits)
+            const phone = document.getElementById("phone").value.trim();
+            if (phone.length !== 10 || isNaN(phone)) {
+                document.getElementById("phoneError").textContent = "Phone number must be 10 digits.";
+                isValid = false;
+            }
+
+            // Password validation (at least 8 characters)
+            const password = document.getElementById("password").value;
+            if (password.length < 8) {
+                document.getElementById("passwordError").textContent = "Password must be at least 8 characters long.";
+                isValid = false;
+            }
+
+            // Confirm password validation (match with password)
+            const confirmPassword = document.getElementById("confirmPassword").value;
+            if (password !== confirmPassword) {
+                document.getElementById("confirmPasswordError").textContent = "Passwords do not match.";
+                isValid = false;
+            }
+
+            // Age validation (must be between 18 and 60)
+            const age = document.getElementById("age").value.trim();
+            if (isNaN(age) || age < 18 || age > 60) {
+                document.getElementById("ageError").textContent = "Age must be between 18 and 60.";
+                isValid = false;
+            }
+
+            // Website URL validation (starts with http:// or https://)
+            const website = document.getElementById("website").value.trim();
+            if (!website.startsWith("http://") && !website.startsWith("https://")) {
+                document.getElementById("websiteError").textContent = "URL must start with http:// or https://.";
+                isValid = false;
+            }
+
+            // If valid, submit form
+            if (isValid) {
+                alert("Form submitted successfully!");
+            }
+        };
+
+        function clearErrors() {
+            document.querySelectorAll(".error").forEach(error => error.textContent = "");
+        }
+    </script>
+</body>
+</html>

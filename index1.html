@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile card builder</title>
+    <style>
+        .profile-card {
+            width: 200px;
+            height: 400px;
+            background-color: aquamarine;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            font-family: 'Times New Roman', Times, serif;
+
+        }
+        img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+
+        }
+
+    </style>
+</head>
+<body>
+    <h1> Welcome to our Card Builder!</h1>
+    <form id="profileForm">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName"><br><br>
+
+        <label for="lasttName">Last Name:</label>
+        <input type="text" id="lastName"><br><br>
+
+        <label for="favColor">Favorite Color:</label>
+        <input type="text" id="favColor"><br><br>
+
+        <label for="hobby">Hobby:</label><br>
+        <select id="hobby">
+            <option value="Reading">Reading</option>
+            <option value="Knitting">Knitting</option>
+            <option value="Driving">Driving</option>
+            <option value="VideoGames">Video Games</option>
+
+        </select><br><br>
+        <label for="ProfilePic">Profile Picture :</label>
+        <input type="url" id="ProfilePic"><br><br>
+        <input type="submit" value="Submit">
+
+
+
+
+    </form>
+
+    <div class="profile-card" id="profileCard">
+        <h2 id="fullName">Your Name sir / sirette </h2>
+        <img id="profileImg" src="">
+        <p id="hobbyDisplay">Your Hobby bucko</p>
+    </div>
+
+    <script>
+        const firstNameField = document.getElementById("firstName");
+        const lastNameField = document.getElementById("lasttName");
+        const favColorField = document.getElementById("favColor");
+        const hobbyField = document.getElementById("hobby");
+        const profilePicField = document.getElementById("profilePic");
+
+        const fullNameDisplay = document.getElementById("fullName");
+        const profileImg = document.getElementById("profileImg");
+        const hobbyDisplay = document.getElementById("hobbyDisplay");
+        const profileCard = document.getElementById("profileCard");
+
+        // Updating the card as the user types or selects values
+        firstNameField.oninput = function() {
+            fullNameDisplay.textContent = firstNameField.value + " " + lastNameField.value;
+        };
+
+        lastNameField.oninput = function() {
+            fullNameDisplay.textContent = firstNameField.value + " " + lastNameField.value;
+        };
+
+        colorField.oninput = function() {
+            profileCard.style.backgroundColor = colorField.value;
+        };
+
+        hobbyField.onchange = function() {
+            hobbyDisplay.textContent = hobbyField.value;
+        };
+
+        profilePicField.oninput = function() {
+            profileImage.src = profilePicField.value;
+        };
+
+
+    </script>
+    
+</body>
+</html>

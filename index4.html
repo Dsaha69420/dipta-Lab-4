@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event and DOM listeners</title>
+    <style>
+        ipnut {
+            margin-top: 10px;
+            padding: 8px;
+            border: 1px solid blue;
+        }
+
+        div {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid black;
+            width: 200px;
+            text-align: center;
+        }
+
+
+    </style>
+</head>
+<body>
+    <h1> Event and DOM listeners</h1>
+    <button id="ClickMe"> Click This button!</button>
+
+    <br><br>
+    <input type="text" id="inputField" placeholder="Focus">
+
+    <div id="hoverOver">Hover Over Me Pls</div>
+    <script>
+        const button = document.getElementById("clickMe");
+        button.addEventListener("click", function() {
+            alert("Button has been Clicked!");
+        });
+
+        const inputField = document.getElementById("inputField");
+        inputField.addEventListener("focus", function() {
+             inputField.style.backgroundColor = "LightGray"
+        });
+
+        const hoverOver = document.getElementById("hoverOver");
+        hoverOver.addEventListener("mouseover", function (){
+            hoverOver.style.backgroundColor = "yellow";
+        });
+        hoverOver.addEventListener("mouseout", function(){
+            hoverOver.style.backgroundColor = "";
+        });
+       
+
+
+
+    </script>
+    
+</body>
+</html>
