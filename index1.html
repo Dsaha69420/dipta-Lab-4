@@ -13,24 +13,21 @@
             border-radius: 10px;
             text-align: center;
             font-family: 'Times New Roman', Times, serif;
-
         }
         img {
             width: 100px;
             height: 100px;
             border-radius: 50%;
-
         }
-
     </style>
 </head>
 <body>
-    <h1> Welcome to our Card Builder!</h1>
+    <h1>Welcome to our Card Builder!</h1>
     <form id="profileForm">
         <label for="firstName">First Name:</label>
         <input type="text" id="firstName"><br><br>
 
-        <label for="lasttName">Last Name:</label>
+        <label for="lastName">Last Name:</label>
         <input type="text" id="lastName"><br><br>
 
         <label for="favColor">Favorite Color:</label>
@@ -42,58 +39,44 @@
             <option value="Knitting">Knitting</option>
             <option value="Driving">Driving</option>
             <option value="VideoGames">Video Games</option>
-
         </select><br><br>
-        <label for="ProfilePic">Profile Picture :</label>
-        <input type="url" id="ProfilePic"><br><br>
+
         <input type="submit" value="Submit">
-
-
-
-
     </form>
 
     <div class="profile-card" id="profileCard">
-        <h2 id="fullName">Your Name sir / sirette </h2>
-        <img id="profileImg" src="">
+        <h2 id="fullName">Your Name sir / sirette</h2>
+        <img id="profileImg" src="" alt="Profile Picture">
         <p id="hobbyDisplay">Your Hobby bucko</p>
     </div>
 
     <script>
         const firstNameField = document.getElementById("firstName");
-        const lastNameField = document.getElementById("lasttName");
+        const lastNameField = document.getElementById("lastName");
         const favColorField = document.getElementById("favColor");
         const hobbyField = document.getElementById("hobby");
-        const profilePicField = document.getElementById("profilePic");
+        const profileImg = document.getElementById("profileImg");
 
         const fullNameDisplay = document.getElementById("fullName");
-        const profileImg = document.getElementById("profileImg");
         const hobbyDisplay = document.getElementById("hobbyDisplay");
         const profileCard = document.getElementById("profileCard");
 
-        // Updating the card as the user types or selects values
-        firstNameField.oninput = function() {
+        
+        document.getElementById("profileForm").onsubmit = function(event) {
+            event.preventDefault();  // Prevent form submission from refreshing the page
+
+            // Update full name
             fullNameDisplay.textContent = firstNameField.value + " " + lastNameField.value;
-        };
 
-        lastNameField.oninput = function() {
-            fullNameDisplay.textContent = firstNameField.value + " " + lastNameField.value;
-        };
+            // Update background color
+            profileCard.style.backgroundColor = favColorField.value;
 
-        colorField.oninput = function() {
-            profileCard.style.backgroundColor = colorField.value;
-        };
-
-        hobbyField.onchange = function() {
+            // Update hobby
             hobbyDisplay.textContent = hobbyField.value;
+
+            // Update profile picture to show my doggy picture
+            profileImg.src = "dog.jpg";
         };
-
-        profilePicField.oninput = function() {
-            profileImage.src = profilePicField.value;
-        };
-
-
     </script>
-    
 </body>
 </html>
